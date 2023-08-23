@@ -1,0 +1,39 @@
+# Unnamed Game
+## Arnar and Will
+
+How to win
+
+
+
+
+
+### Objective    
+To find the sword and use it to kill the skeleton. If you find the skeleton before you find the weapon, you die.
+The sword and the skeleton position is random.
+
+### Scene
+In a castle with 6 rooms + Starting area
+###Objective
+
+No just, find the sword and kill the skellie.
+
+----- -----
+|   | |   |
+|         |
+|___| |___|
+|   | |   |
+|         |
+|___| |___|
+|   | |   |
+|         |
+|___| |___|
+   | S |
+   |___|
+
+
+- Text based story
+
+
+- Character choice
+
+- Mideval Fantasy
