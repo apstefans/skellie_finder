@@ -1,6 +1,8 @@
 # Modules
 import random
 
+# Lets expand on this game
+
 # Sword and Skellie position
 sword_pos = random.randint(1, 6)
 skellie_pos = random.randint(1, 6)
