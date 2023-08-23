@@ -6,6 +6,9 @@ sword_pos = random.randint(1, 6)
 skellie_pos = random.randint(1, 6)
 while sword_pos == skellie_pos:
     skellie_pos = random.randint(1, 6)
+tim_pos = random.randint(1, 6)
+while sword_pos == tim_pos or skellie_pos == tim_pos:
+    tim_pos = random.randint(1, 6)
 
 # Sword found?
 sword_found = False
@@ -21,6 +24,12 @@ def skellie():
         print(name + " doesn't have his sword! His fists are no match against the mighty Skellie.")
         print(name + " has died a gruesome death.")
         print("You lose.")
+
+# Tim
+def Tim():
+    print("A mysterious man in just a robe and sunglasses is waiting for you")
+    print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
+    print("Your asshole has been ravaged by the Tim.\nYou walk home. Butt cheeks hurting. ")
 
 # Rooms and Corridors
 
@@ -103,6 +112,8 @@ def room_one():
                 print("You need to pick where to go.")
     elif skellie_pos == 1:
         skellie()
+    elif tim_pos == 1:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
@@ -112,7 +123,6 @@ def room_one():
                 corridor_one()
             else:
                 print("You need to pick where to go.")
-    
    
 def room_two():
     directions = ["e"]
@@ -130,6 +140,8 @@ def room_two():
                 print("You need to pick where to go.")
     elif skellie_pos == 2:
         skellie()
+    elif tim_pos == 2:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
@@ -156,6 +168,8 @@ def room_three():
                 print("You need to pick where to go.")
     elif skellie_pos == 3:
         skellie()
+    elif tim_pos == 3:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
@@ -182,6 +196,8 @@ def room_four():
                 print("You need to pick where to go.")
     elif skellie_pos == 4:
         skellie()
+    elif tim_pos == 4:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
@@ -208,6 +224,8 @@ def room_five():
                 print("You need to pick where to go.")
     elif skellie_pos == 5:
         skellie()
+    elif tim_pos == 5:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
@@ -234,6 +252,8 @@ def room_six():
                 print("You need to pick where to go.")
     elif skellie_pos == 6:
         skellie()
+    elif tim_pos == 6:
+        Tim()
     else:
         print("The room is empty")
         print("There's nothing for you here. Press e to exit the room")
