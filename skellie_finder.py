@@ -1,16 +1,25 @@
 # Modules
 import random
+import sys
 
 # Lets expand on this game
+sword_pos = ""
+skellie_pos = ""
+tim_pos = ""
+name = ""
 
 # Sword and Skellie position
-sword_pos = random.randint(1, 6)
-skellie_pos = random.randint(1, 6)
-while sword_pos == skellie_pos:
+def ranpos():
+    global sword_pos
+    sword_pos = random.randint(1, 6)
+    global skellie_pos
     skellie_pos = random.randint(1, 6)
-tim_pos = random.randint(1, 6)
-while sword_pos == tim_pos or skellie_pos == tim_pos:
+    while sword_pos == skellie_pos:
+        skellie_pos = random.randint(1, 6)
+    global tim_pos
     tim_pos = random.randint(1, 6)
+    while sword_pos == tim_pos or skellie_pos == tim_pos:
+        tim_pos = random.randint(1, 6)
 
 # Sword found?
 sword_found = False
@@ -18,24 +27,55 @@ sword_found = False
 # Skeleton
 def skellie():
     print(name +" sees the mighty Skellie!")
+    again = ""
     if sword_found == True:
         print(name + "thrusts his rusty sword through Skellie")
         print("Skellie lets out a loud cry, and crumbles down into dust.")
         print("You win!")
+        again = input("Would you like to play again (y/n)? ")
+        while again != "y" or "n":
+            if again == "y":
+                start()
+            elif again == "n":
+                quit()
+            else:
+                print("Pick y or n")
     else:
         print(name + " doesn't have his sword! His fists are no match against the mighty Skellie.")
         print(name + " has died a gruesome death.")
         print("You lose.")
+        again = input("Would you like to play again (y/n)? ")
+        while again != "y" or "n":
+            if again == "y":
+                start()
+            elif again == "n":
+                quit()
+            else:
+                print("Pick y or n")
 
 # Tim
 def Tim():
     print("A mysterious man in just a robe and sunglasses is waiting for you")
     print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
     print("Your asshole has been ravaged by the Tim.\nYou walk home. Butt cheeks hurting. ")
+    again = input("Would you like to play again (y/n)? ")
+    while again != "y" or "n":
+        if again == "y":
+            start()
+        elif again == "n":
+            quit()
+        else:
+            print("Pick y or n")
 
 # Rooms and Corridors
 
 def start():
+    ranpos()
+    print("What is your name?")
+    global name
+    name = input()
+    print(name  + " is woken up by a disturbing noise in the middle of the night.")
+    print("It's probably those damn skeletons again. Find your sword and kill it!")
     print("There is exit to the north (n)")
     nav = ""
     while nav not in directions:
@@ -67,7 +107,7 @@ def corridor_two():
     nav = ""
     print("Corridor 2")
     print(name + " continues down the dimly lit corridor. Candle light flickering against the walls.")
-    print(name + " can go north (n) to walk further down the corridor, or west (w) oe east (e)\ninto the rooms on either side.")
+    print(name + " can go north (n) to walk further down the corridor, or west (w) or east (e) into the rooms on either side.")
     while nav not in directions:
         nav = input("Where do you want to go?")
         if nav == "n":
@@ -86,7 +126,7 @@ def corridor_three():
     nav = ""
     print("Corridor 3")
     print(name + " heads even further down the corridor. Are you sure this is a good idea?")
-    print("You come to the end of the corridor. You can either go east (e) or west (w)\ninto the rooms on either side.")
+    print("You come to the end of the corridor. You can either go east (e) or west (w) into the rooms on either side.")
     while nav not in directions:
             nav = input("Where do you want to go?")
             if nav == "w":
@@ -101,7 +141,7 @@ def corridor_three():
 def room_one():
     directions = ["e"]
     nav = ""
-    print("You enter a the room, the warm glow of the fireplace casts eiery showdows all over the room.\nThose cheeky skellies could be anywhere!")
+    print("You enter a the room, the warm glow of the fireplace casts eiery showdows all over the room. Those cheeky skellies could be anywhere!")
     if sword_pos == 1: 
         global sword_found
         sword_found = True
@@ -266,12 +306,14 @@ def room_six():
             else:
                 print("You need to pick where to go.")
 
+def quit():
+    print("Too scared of Skellie? I don't blame you.")
+    from sys import exit
+    exit()
+
+
 if __name__ == "__main__":
     while True:
         directions = ["n"]
         print("Welcome to Skellie Finder")
-        print("What is your name?")
-        name = input()
-        print(name  + " is woken up by a disturbing noise in the middle of the night.")
-        print("It's probably those damn skeletons again. Find your sword and kill it!")
         start()
