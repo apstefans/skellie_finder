@@ -3,6 +3,17 @@ import random
 import sys
 import os
 
+# ANSI Colors
+GREEN = "\33[1;32m"
+GREENBLINK = GREEN + "\33[5;32m"
+MAGENTA = "\33[1;35m"
+YELLOW = "\33[1;33m"
+YELLOWBLINK = YELLOW + "\33[5;33m"
+RED = "\33[1;31m"
+REDBLINK = RED + "\33[5;31m"
+BLUE = "\33[1;34m"
+TERMCOLOR = "\33[0m"
+
 # Global variables
 sword_pos = ""
 skellie_pos = ""
@@ -339,12 +350,17 @@ def room_six():
 
 def quit():
     print("Too scared of Skellie? I don't blame you.")
-    from sys import exit
-    exit()
+    sys.exit()
 
 
 if __name__ == "__main__":
     while True:
         clear()
-        print("Welcome to Skellie Finder")
+        print("\t\t\t  Welcome to Skellie Finder")
+
+        f = open('skellie.txt', 'r')
+        file_content = f.read()
+        f.close()
+        print(REDBLINK + file_content + TERMCOLOR)
+        input("\t\t\t  Press any button to continue")
         start()
