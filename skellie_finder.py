@@ -2,8 +2,6 @@
 import random
 import sys
 
-print("does this affect the main branch?")
-
 # Global variables
 sword_pos = ""
 skellie_pos = ""
@@ -34,40 +32,74 @@ def skellie():
         print(name + " thrusts the rusty sword through Skellie!")
         print("Skellie lets out a loud cry, and crumbles down into dust.")
         print("You win!")
-        again = input("Would you like to play again (y/n)? ")
         while again != "y" or "n":
+            again = input("Would you like to play again (y/n)? ")
             if again == "y":
                 start()
             elif again == "n":
                 quit()
             else:
                 print("Pick y or n")
+                continue
     else:
         print(name + " doesn't have the sword! Fists are no match against the mighty Skellie.")
         print(name + " has died a gruesome death.")
         print("You lose.")
-        again = input("Would you like to play again (y/n)? ")
         while again != "y" or "n":
+            again = input("Would you like to play again (y/n)? ")
             if again == "y":
                 start()
             elif again == "n":
                 quit()
             else:
                 print("Pick y or n")
+                continue
 
 # Tim
 def Tim():
+    again = ""
     print("A mysterious man in just a robe and sunglasses is waiting for you")
     print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
     print(name + "'s asshole has been ravaged by the Tim.\nYou walk home. Butt cheeks hurting. ")
-    again = input("Would you like to play again (y/n)? ")
     while again != "y" or "n":
+        again = input("Would you like to play again (y/n)? ")
         if again == "y":
             start()
         elif again == "n":
             quit()
         else:
             print("Pick y or n")
+            continue
+
+# Sword
+def sword():
+    directions = ["e"]
+    nav = ""
+    global sword_found
+    sword_found = True
+    print(name + " found the sword! Now go get that bastard!")
+    print("Press e to exit the room")
+    while nav not in directions:
+        nav = input("Where do you want to go?")
+        if nav == "e":
+            corridor_one()
+        else:
+            print("You need to pick where to go.")
+            continue
+
+# Empty
+def empty():
+    directions = ["e"]
+    nav = ""
+    print("The room is empty")
+    print("There's nothing for " + name + " here. Press e to exit the room")
+    while nav not in directions:
+        nav = input("Where do you want to go?")
+        if nav == "e":
+            corridor_one()
+        else:
+            print("You need to pick where to go.")
+            continue
 
 # Rooms and Corridors
 def start():
@@ -86,6 +118,7 @@ def start():
             corridor_one()
         else:
             print("You need to pick where to go.")
+            continue
 
 def corridor_one():
     directions = ["n", "w", "e"]
@@ -103,6 +136,7 @@ def corridor_one():
             room_two()
         else:
             print("You need to pick where to go.")
+            continue
 
 def corridor_two():
     directions = ["n", "w", "e", "s"]
@@ -121,7 +155,8 @@ def corridor_two():
         elif nav == "s":
             corridor_one()
         else:
-            print("You need to pick where to go.") 
+            print("You need to pick where to go.")
+            continue
             
 def corridor_three():
     directions = [ "w", "e", "s"]
@@ -139,35 +174,18 @@ def corridor_three():
                 corridor_two()
             else:
                 print("You need to pick where to go.")
+                continue
     
 def room_one():
-    directions = ["e"]
-    nav = ""
     print(name + " enters the room, the warm glow of the fireplace casts eery shawdows all over the room. Those cheeky skellies could be anywhere!")
     if sword_pos == 1: 
-        global sword_found
-        sword_found = True
-        print(name + " found the sword! Now go get that bastard!")
-        print("Press e to exit the room")
-        while nav not in directions:
-            nav = input("Where do you want to go?")
-            if nav == "e":
-                corridor_one()
-            else:
-                print("You need to pick where to go.")
+        sword()
     elif skellie_pos == 1:
         skellie()
     elif tim_pos == 1:
         Tim()
     else:
-        print("The room is empty")
-        print("There's nothing for " + name + " here. Press e to exit the room")
-        while nav not in directions:
-            nav = input("Where do you want to go?")
-            if nav == "e":
-                corridor_one()
-            else:
-                print("You need to pick where to go.")
+       empty()
    
 def room_two():
     directions = ["e"]
@@ -184,6 +202,7 @@ def room_two():
                 corridor_one()
             else:
                 print("You need to pick where to go.")
+                continue
     elif skellie_pos == 2:
         skellie()
     elif tim_pos == 2:
@@ -197,6 +216,7 @@ def room_two():
                 corridor_one()
             else:
                 print("You need to pick where to go.")
+                continue
 
 def room_three():
     directions = ["e"]
@@ -213,6 +233,7 @@ def room_three():
                 corridor_two()
             else:
                 print("You need to pick where to go.")
+                continue
     elif skellie_pos == 3:
         skellie()
     elif tim_pos == 3:
@@ -226,6 +247,7 @@ def room_three():
                 corridor_two()
             else:
                 print("You need to pick where to go.")
+                continue
 
 def room_four():
     nav = ""
@@ -242,6 +264,7 @@ def room_four():
                 corridor_two()
             else:
                 print("You need to pick where to go.")
+                continue
     elif skellie_pos == 4:
         skellie()
     elif tim_pos == 4:
@@ -255,6 +278,7 @@ def room_four():
                 corridor_two()
             else:
                 print("You need to pick where to go.")
+                continue
 
 def room_five():
     nav = ""
@@ -271,6 +295,7 @@ def room_five():
                 corridor_three()
             else:
                 print("You need to pick where to go.")
+                continue
     elif skellie_pos == 5:
         skellie()
     elif tim_pos == 5:
@@ -284,6 +309,7 @@ def room_five():
                 corridor_three()
             else:
                 print("You need to pick where to go.")
+                continue
 
 def room_six():
     nav = ""
@@ -300,6 +326,7 @@ def room_six():
                 corridor_three()
             else:
                 print("You need to pick where to go.")
+                continue
     elif skellie_pos == 6:
         skellie()
     elif tim_pos == 6:
@@ -313,6 +340,7 @@ def room_six():
                 corridor_three()
             else:
                 print("You need to pick where to go.")
+                continue
 
 def quit():
     print("Too scared of Skellie? I don't blame you.")
