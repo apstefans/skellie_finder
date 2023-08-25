@@ -2,6 +2,8 @@
 import random
 import sys
 
+print("does this affect the main branch?")
+
 # Global variables
 sword_pos = ""
 skellie_pos = ""
