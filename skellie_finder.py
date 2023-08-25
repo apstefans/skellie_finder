@@ -8,6 +8,7 @@ skellie_pos = ""
 tim_pos = ""
 name = ""
 
+
 # Sword and Skellie position
 def ranpos():
     global sword_pos
@@ -21,6 +22,19 @@ def ranpos():
     while sword_pos == tim_pos or skellie_pos == tim_pos:
         tim_pos = random.randint(1, 6)
 
+# Play again
+def playagain():
+    again = ""
+    while again != "y" or "n":
+        again = input("Would you like to play again (y/n)? ")
+        if again == "y":
+            start()
+        elif again == "n":
+            quit()
+        else:
+            print("Pick y or n")
+            continue
+
 # Sword found?
 sword_found = False
 
@@ -32,28 +46,12 @@ def skellie():
         print(name + " thrusts the rusty sword through Skellie!")
         print("Skellie lets out a loud cry, and crumbles down into dust.")
         print("You win!")
-        while again != "y" or "n":
-            again = input("Would you like to play again (y/n)? ")
-            if again == "y":
-                start()
-            elif again == "n":
-                quit()
-            else:
-                print("Pick y or n")
-                continue
+        playagain()
     else:
         print(name + " doesn't have the sword! Fists are no match against the mighty Skellie.")
         print(name + " has died a gruesome death.")
         print("You lose.")
-        while again != "y" or "n":
-            again = input("Would you like to play again (y/n)? ")
-            if again == "y":
-                start()
-            elif again == "n":
-                quit()
-            else:
-                print("Pick y or n")
-                continue
+        playagain()
 
 # Tim
 def Tim():
@@ -61,15 +59,7 @@ def Tim():
     print("A mysterious man in just a robe and sunglasses is waiting for you")
     print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
     print(name + "'s asshole has been ravaged by the Tim.\nYou walk home. Butt cheeks hurting. ")
-    while again != "y" or "n":
-        again = input("Would you like to play again (y/n)? ")
-        if again == "y":
-            start()
-        elif again == "n":
-            quit()
-        else:
-            print("Pick y or n")
-            continue
+    playagain()
 
 # Sword
 def sword():
