@@ -1,6 +1,7 @@
 # Modules
 import random
 import sys
+import os
 
 # Global variables
 sword_pos = ""
@@ -8,6 +9,9 @@ skellie_pos = ""
 tim_pos = ""
 name = ""
 
+# Clear screen
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 # Sword and Skellie position
 def ranpos():
@@ -58,24 +62,15 @@ def Tim():
     again = ""
     print("A mysterious man in just a robe and sunglasses is waiting for you")
     print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
-    print(name + "'s asshole has been ravaged by the Tim.\nYou walk home. Butt cheeks hurting. ")
+    print(name + "'s asshole has been ravaged by Tim.\nYou walk home. Butt cheeks hurting. ")
     playagain()
 
 # Sword
 def sword():
-    directions = ["e"]
-    nav = ""
     global sword_found
     sword_found = True
     print(name + " found the sword! Now go get that bastard!")
     print("Press e to exit the room")
-    while nav not in directions:
-        nav = input("Where do you want to go?")
-        if nav == "e":
-            corridor_one()
-        else:
-            print("You need to pick where to go.")
-            continue
 
 # Empty
 def empty():
@@ -93,6 +88,7 @@ def empty():
 
 # Rooms and Corridors
 def start():
+    clear()
     ranpos()
     print("What is your name?")
     global name
@@ -167,9 +163,18 @@ def corridor_three():
                 continue
     
 def room_one():
+    directions = ["e"]
+    nav = ""
     print(name + " enters the room, the warm glow of the fireplace casts eery shawdows all over the room. Those cheeky skellies could be anywhere!")
     if sword_pos == 1: 
         sword()
+        while nav not in directions:
+            nav = input("Where do you want to go?")
+            if nav == "e":
+                corridor_one()
+            else:
+                print("You need to pick where to go.")
+                continue
     elif skellie_pos == 1:
         skellie()
     elif tim_pos == 1:
@@ -340,5 +345,6 @@ def quit():
 
 if __name__ == "__main__":
     while True:
+        clear()
         print("Welcome to Skellie Finder")
         start()
