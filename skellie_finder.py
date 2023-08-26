@@ -358,7 +358,6 @@ if __name__ == "__main__":
     while True:
         clear()
         print("\t\t\t  Welcome to Skellie Finder")
-
         f = open('skellie.txt', 'r')
         file_content = f.read()
         f.close()
