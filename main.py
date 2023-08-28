@@ -61,13 +61,13 @@ def playagain():
             current_room = 'Bedroom'
             break
         elif again == "n":
-            clear()
             quit()
         else:
             print("Pick y or n")
             continue
 
 def quit():
+    clear()
     print("Too scared of Skellie? I don't blame you.")
     sys.exit()
 
@@ -171,10 +171,14 @@ while True:
     # Change room
     user_input = input("Where do you want to go? ")
     direction = user_input.upper()
-    try:
-        current_room = room[current_room][direction]
-    except:
-        text = "You can't go that way"
+    
+    if direction == "EXIT":
+        quit()
+    else:
+        try:
+            current_room = room[current_room][direction]
+        except:
+            text = "You can't go that way"
 
 
 
