@@ -20,6 +20,11 @@ tim_pos = ""
 sword_found = False
 current_room = 'Bedroom'
 new_game = True
+name_input = ""
+name = ""
+msg = []
+skellie_name = RED + "Skellie" + TERMCOLOR
+tim_name = GREEN + "Tim" + TERMCOLOR
 
 ## Functions
 
@@ -54,16 +59,18 @@ def playagain():
     again = ""
     global new_game
     global current_room
+    global sword_found
     while again != "y" or "n":
-        again = input("Would you like to play again (y/n)? ")
+        again = input(f"{BLUE}Would you like to play again (y/n)? {TERMCOLOR}")
         if again == "y":
             new_game = True
             current_room = 'Bedroom'
+            sword_found = False
             break
         elif again == "n":
             quit()
         else:
-            print("Pick y or n")
+            print(f"{YELLOW}Pick y or n{TERMCOLOR}")
             continue
 
 def quit():
@@ -71,53 +78,66 @@ def quit():
     print("Too scared of Skellie? I don't blame you.")
     sys.exit()
 
+def ask_name():
+    global name_input
+    global name
+    name_input = input(BLUE + "What is your name? " + TERMCOLOR)
+    name = YELLOW + name_input.title() + TERMCOLOR
+
 # Skeleton
 def skellie():
-    print(name +" sees the mighty Skellie!")
+    print(f"{name} sees the mighty Skellie!")
     if sword_found == True:
-        print(name + " thrusts the rusty sword through Skellie!")
-        print("Skellie lets out a loud cry, and crumbles down into dust.")
-        print("You win!")
+        print(f"{name} thrusts the rusty sword through {skellie_name}!")
+        print(f"{skellie_name} lets out a loud cry, and crumbles down into dust.")
+        print(f"{BLUE}You win!{TERMCOLOR}")
         playagain()
     else:
-        print(name + " doesn't have the sword! Fists are no match against the mighty Skellie.")
-        print(name + " has died a gruesome death.")
-        print("You lose.")
+        print(f"{name} doesn't have the sword! Fists are no match against the mighty {skellie_name}.")
+        print(f"{name} has died a gruesome death.")
+        print(f"{RED}You lose.{TERMCOLOR}")
         playagain()
 
 # Tim
 def Tim():
     print("A mysterious man in just a robe and sunglasses is waiting for you")
-    print("Well isn't it a pleasure to see you here. I've been waiting a while... " + name)
-    print(name + "'s asshole has been ravaged by Tim.\nYou walk home. Butt cheeks hurting. ")
+    print(f'"Well isn\'t it a pleasure to see you here. I\'ve been waiting a while... {name}." he says in a deep sultry voice.')
+    print(f'"My name is {tim_name}." His powers of sedcution are irresistable. {name} gives in to the temptation.')
+    print(f"While distracted, Skellie rushes in and kills {name}. Died with the pants down. How embarrassing")
+    print(f"{RED}You lose.{TERMCOLOR}")
     playagain()
 
 # Sword
 def sword():
     global sword_found
     sword_found = True
-    print(name + " found the sword! Now go get that bastard!")
+    print(f"{name} found the sword! Now go get that bastard!")
     print("Press e to exit the room")
 
 # Start screen
 def start():
     pass
 
-msg = [
-    f"Testing0",
-    f"Testing1",
-    f"Testing2",
-    f"Testing3",
-    f"Testing4",
-    f"Testing5",
-    f"Testing6",
-    f"Testing7",
-    f"Testing8",
-    f"Testing9",
-]
+clear()
+intro()
 
-## Map
-room = {
+while True:
+    # Room descriptions
+    msg = [
+    f"{name} is back in the bedroom. Go back out there and find {skellie_name}!",
+    f"{name} enters the room, the warm glow of the fireplace casts eery shawdows all over the room. That cheeky {skellie_name} could be anywhere!",
+    f"{name} enters the bathroom. Damn {skellie_name} left the seat up again",
+    f"Ahhhh! A bat flies out of the door. {name} peaks the head in to see a delapedated room.\nCracks and water trickle down the walls.",
+    f"Unos, Dos, Tres, Cuatro! {name} enters the room and sees a salsa band working on their montunos.\nThat {skellie_name} does love salsa!",
+    f"{name} walks into the room to finds Piers Morgan waiting for an interview. Not this time Piers!",
+    f"As {name} walks into the room they see Phil Collins tickling the drum set with a couple of tibias.\n*dodo dodo dodo dodo dun dun! I can feel a {skellie_name} in the air tonight!",
+    f"{name} grabs a candle and walks out into the corridor.",
+    f"{name} continues down the dimly lit corridor. Candle light flickering against the walls.",
+    f"{name} heads even further down the corridor. Are you sure this is a good idea?",
+    ]
+
+    # Map
+    room = {
     'Bedroom' : {'N' : 'Corridor One', 'text' : msg[0], 'id' : 0},
     'Living Room' : {'E' : 'Corridor One', 'text' : msg[1], 'id' : 1},
     'Bathroom' : {'W' : 'Corridor One', 'text' : msg[2], 'id' : 2},
@@ -127,14 +147,10 @@ room = {
     'Genesis Room' : {'W' : 'Corridor Three', 'text' : msg[6], 'id' : 6},
     'Corridor One' : {'W' : 'Living Room', 'E' : 'Bathroom', 'N' : 'Corridor Two', 'S' : 'Bedroom', 'text' : msg[7], 'id' : 0},
     'Corridor Two' : {'W' : 'Scary Room', 'E' : 'Music Room', 'N' : 'Corridor Three', 'S' : 'Corridor One', 'text' : msg[8], 'id' : 0},
-    'Corridor Three' : {'W' : 'TV Room', 'E' : 'Genesis Room', 'S' : 'Corridor Two', 'text' : msg[9], 'id' : 0}
-}
-text = room[current_room]['text']
+    'Corridor Three' : {'W' : 'TV Room', 'E' : 'Genesis Room', 'S' : 'Corridor Two', 'text' : msg[9], 'id' : 0} 
+    }
+    text = room[current_room]['text']
 
-clear()
-intro()
-
-while True:
     clear()
 
     # Display location
@@ -144,13 +160,12 @@ while True:
     # Print message
     if new_game == True:
         ranpos()
-        name = input("What is your name? ")
+        ask_name()
         print(f"{name} is woken up by a disturbing noise in the middle of the night.")
-        print("It's probably that damn Skellie again. Find the sword and kill it!")
+        print(f"It's probably that damn {skellie_name} again. Find the sword and kill it!")
         print("There is exit to the North")
     else:
         print(text)
-    text = room[current_room]['text']
 
     # Set new game to false
     new_game = False
@@ -160,7 +175,10 @@ while True:
         skellie()
         continue
     elif sword_pos == room[current_room]['id']:
-        sword()
+        if sword_found == False:
+            sword()
+        else:
+            print(f"{name} has already taken the sword from this room. There's nothing else here.")
     elif tim_pos == room[current_room]['id']:
         Tim()
         continue
@@ -169,7 +187,7 @@ while True:
         print(f"There's nothing for {name} here.")
 
     # Change room
-    user_input = input("Where do you want to go? ")
+    user_input = input(BLUE + "Where to? " + TERMCOLOR)
     direction = user_input.upper()
     
     if direction == "EXIT":
