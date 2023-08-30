@@ -37,5 +37,4 @@ Y        `=--~                  _..-'  ~`-.._                  ~`-'         |
    |           ;                                              `.          /
    `.       _.'                                                 "-.____.-'
      ~-----"
-              Find the sword before you bump into Skellie to win.
-    Navigate with n to go north, s to go south, w to go west and e to go east
+              

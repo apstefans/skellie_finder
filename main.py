@@ -36,8 +36,10 @@ def intro():
     file_content = f.read()
     f.close()
     print(REDBLINK + file_content + TERMCOLOR)
+    print(RED + "\t\tFind the sword before you bump into Skellie to win.")
+    print("    Navigate with n to go north, s to go south, w to go west and e to go east" + TERMCOLOR)
     ranpos()
-    input("\n\t\t\t     Press any key to start")
+    input("\n\t\t\t    Press any key to start")
 
 # Sword and Skellie positions
 def ranpos():
