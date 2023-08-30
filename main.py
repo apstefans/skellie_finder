@@ -194,36 +194,36 @@ while True:
         print('-' * 15)
         print(f"Tim {tim_pos} Skellie {skellie_pos} sword {sword_pos} protection {protection_pos}")
 
-    msg = [
-    f"{name} is back in the bedroom. Go back out there and find {skellie_name}!",
-    f"{name} enters the room, the warm glow of the fireplace casts eery shawdows all over the room. That cheeky {skellie_name} could be anywhere!",
-    f"{name} enters the bathroom. Damn {skellie_name} left the seat up again",
-    f"Ahhhh! A bat flies out of the door. {name} peaks the head in to see a delapedated room.\nCracks and water trickle down the walls.",
-    f"Unos, Dos, Tres, Cuatro! {name} enters the room and sees a salsa band working on their montunos.\nThat {skellie_name} does love salsa!",
-    f"{name} walks into the room to finds Piers Morgan waiting for an interview. Not this time Piers!",
-    f"As {name} walks into the room they see Phil Collins tickling the drum set with a couple of tibias.\n*dodo dodo dodo dodo dun dun! I can feel a {skellie_name} in the air tonight!",
-    f"{name} grabs a candle and walks out into the corridor.",
-    f"{name} continues down the dimly lit corridor. Candle light flickering against the walls.",
-    f"{name} heads even further down the corridor. Are you sure this is a good idea?",
-    ]
-
-    # Map
-    room = {
-    'Bedroom' : {'N' : 'Corridor One', 'text' : msg[0], 'id' : 0},
-    'Living Room' : {'E' : 'Corridor One', 'text' : msg[1], 'id' : 1},
-    'Bathroom' : {'W' : 'Corridor One', 'text' : msg[2], 'id' : 2},
-    'Scary Room' : {'E' : 'Corridor Two', 'text' : msg[3], 'id' : 3},
-    'Music Room' : { 'W' : 'Corridor Two', 'text' : msg[4], 'id' : 4},
-    'TV Room' : {'E' : 'Corridor Three', 'text' : msg[5], 'id' : 5},
-    'Genesis Room' : {'W' : 'Corridor Three', 'text' : msg[6], 'id' : 6},
-    'Corridor One' : {'W' : 'Living Room', 'E' : 'Bathroom', 'N' : 'Corridor Two', 'S' : 'Bedroom', 'text' : msg[7], 'id' : 0},
-    'Corridor Two' : {'W' : 'Scary Room', 'E' : 'Music Room', 'N' : 'Corridor Three', 'S' : 'Corridor One', 'text' : msg[8], 'id' : 0},
-    'Corridor Three' : {'W' : 'TV Room', 'E' : 'Genesis Room', 'S' : 'Corridor Two', 'text' : msg[9], 'id' : 0} 
-    }
-
     # Set new game to false
     new_game = False
 
+    msg = [
+        f"{name} is back in the bedroom. Go back out there and find {skellie_name}!",
+        f"{name} enters the room, the warm glow of the fireplace casts eery shawdows all over the room. That cheeky {skellie_name} could be anywhere!",
+        f"{name} enters the bathroom. Damn {skellie_name} left the seat up again",
+        f"Ahhhh! A bat flies out of the door. {name} peaks the head in to see a delapedated room.\nCracks and water trickle down the walls.",
+        f"Unos, Dos, Tres, Cuatro! {name} enters the room and sees a salsa band working on their montunos.\nThat {skellie_name} does love salsa!",
+        f"{name} walks into the room to finds Piers Morgan waiting for an interview. Not this time Piers!",
+        f"As {name} walks into the room they see Phil Collins tickling the drum set with a couple of tibias.\n*dodo dodo dodo dodo dun dun! I can feel a {skellie_name} in the air tonight!",
+        f"{name} grabs a candle and walks out into the corridor.",
+        f"{name} continues down the dimly lit corridor. Candle light flickering against the walls.",
+        f"{name} heads even further down the corridor. Are you sure this is a good idea?",
+        ]
+    
+    # Map
+    room = {
+        'Bedroom' : {'N' : 'Corridor One', 'text' : msg[0], 'id' : 0},
+        'Living Room' : {'E' : 'Corridor One', 'text' : msg[1], 'id' : 1},
+        'Bathroom' : {'W' : 'Corridor One', 'text' : msg[2], 'id' : 2},
+        'Scary Room' : {'E' : 'Corridor Two', 'text' : msg[3], 'id' : 3},
+        'Music Room' : { 'W' : 'Corridor Two', 'text' : msg[4], 'id' : 4},
+        'TV Room' : {'E' : 'Corridor Three', 'text' : msg[5], 'id' : 5},
+        'Genesis Room' : {'W' : 'Corridor Three', 'text' : msg[6], 'id' : 6},
+        'Corridor One' : {'W' : 'Living Room', 'E' : 'Bathroom', 'N' : 'Corridor Two', 'S' : 'Bedroom', 'text' : msg[7], 'id' : 0},
+        'Corridor Two' : {'W' : 'Scary Room', 'E' : 'Music Room', 'N' : 'Corridor Three', 'S' : 'Corridor One', 'text' : msg[8], 'id' : 0},
+        'Corridor Three' : {'W' : 'TV Room', 'E' : 'Genesis Room', 'S' : 'Corridor Two', 'text' : msg[9], 'id' : 0} 
+        }
+    
     # See if Skellie, Sword or Tim are in room
     if skellie_pos == room[current_room]['id']:
         skellie()
@@ -259,10 +259,3 @@ while True:
             text = room[current_room]['text']
         except:
             text = "You can't go that way"
-
-
-
-
-
-
-
