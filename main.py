@@ -24,7 +24,6 @@ use_protection = ""
 tim_found = False
 current_room = 'Bedroom'
 new_game = True
-direction = ""
 skellie_name = RED + "Skellie" + TERMCOLOR
 tim_name = GREEN + "Tim" + TERMCOLOR
 
