@@ -1,1 +1,0 @@
-# Characters for Skellie finder
