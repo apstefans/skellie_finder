@@ -13,13 +13,16 @@ class player:
 
     def use_potion(item):
         old_hp = player.current_hp
+        new_hp = player.maxhp - old_hp
         player.current_hp += item.heal
-        print('Player heals ' + str(item.heal) + ' points!' )
         inv[item.name] -= 1
         if inv[item.name] < 1:
             inv.pop(item.name)
         if player.current_hp > player.maxhp:
             player.current_hp = player.maxhp
+            print(player.name + ' heals ' + str(new_hp) + ' points!' )
+        else:
+            print('Player heals ' + str(item.heal) + ' points!' )
 
 class potion:
     def __init__(self, name, heal):

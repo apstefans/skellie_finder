@@ -15,8 +15,8 @@ cl.inv[large_potion.name] = 1
 cl.player.print_inv(cl.inv)
 
 print('Health: ' + str(cl.player.current_hp) + '/' + str(cl.player.maxhp))
-print(f'{cl.player.name} takes 20 damage!')
-cl.player.current_hp = cl.player.current_hp - 20
+print(f'{cl.player.name} takes 25 damage!')
+cl.player.current_hp = cl.player.current_hp - 25
 print('Health: ' + str(cl.player.current_hp) + '/' + str(cl.player.maxhp))
 
 
