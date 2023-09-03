@@ -1,6 +1,7 @@
 import random
 import os
 import sys
+import time
 
 # ANSI Colors
 GREEN = "\33[1;32m"
@@ -191,7 +192,11 @@ while True:
         print(f"It's probably that damn {skellie_name} again. Find the sword and kill it!")
         print('-' * 15)
     else:
-        print(text)
+        for letter in text:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.008)
+        print("\n")
         print('-' * 15)
         print(f"Tim {tim_pos} Skellie {skellie_pos} sword {sword_pos} protection {protection_pos}")
 
