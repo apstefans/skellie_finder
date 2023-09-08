@@ -1,6 +1,7 @@
 import classtest as cl
 import time
 import sys
+import os
 import random
 
 GREEN = "\33[1;32m"
@@ -202,23 +203,19 @@ def generate_xy():
         # North
         north = list(list(themap.keys())[i])
         north[1] = north[1] + 1
-        north = tuple(north)
-        northlist.append(north)
+        northlist.append(tuple(north))
         # South
         south =  list(list(themap.keys())[i])
         south[1] = south[1] - 1
-        south = tuple(south)
-        southlist.append(south)
+        southlist.append(tuple(south))
         # East
         east =  list(list(themap.keys())[i])
         east[0] = east[0] + 1
-        east = tuple(east)
-        eastlist.append(east)
+        eastlist.append(tuple(east))
         # West
         west =  list(list(themap.keys())[i])
         west[0] = west[0] - 1
-        west = tuple(west)
-        westlist.append(west)
+        westlist.append(tuple(west))
         i += 1
 
     for keys in themap.keys():
@@ -233,7 +230,7 @@ generate_xy()
 current_room = tuple(generate_xy.start_location)
 current_room_name = str(themap[current_room]['name'])
 room_count = 0
-text = 'you are in ' + current_room_name + ' ' + str(current_room)
+text = 'You are in ' + current_room_name + ' ' + str(current_room)
 
 # Count how many exits each room has
 checkroomlist = list(themap.keys())
@@ -255,9 +252,39 @@ for i in range(0, len(checkroomlist)):
                 countexits[checkroomlist[i]] += 1
     # Reset the temporary storage
     tmpstore = []
-print(countexits)
+#print(countexits)
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def display_map():
+    #global current_room_name
+    map_display = '\n' + BLUE + themap[current_room]['name'] + ' ' + str(current_room) + TERMCOLOR + '\n\n'
+    for y in range (0,10):
+        listyeah = []
+        for x in range (0,10):
+            listyeah.append((x,y))
+        for k in range (0,10):
+            line = ''
+            for l in range(0,10):
+                if listyeah[l] == current_room:
+                    line += GREEN + 'p' + TERMCOLOR  
+                elif listyeah[l] in list(themap):
+                    if themap[listyeah[l]]['Room Visited'] == 'Yes':
+                        line = line + BLUE + 'x' + TERMCOLOR
+                    else:
+                        line += 'x'     
+                else:
+                    line += ' '
+        if line == ' ' * 10:
+            continue
+        if map_display == '':
+            map_display = '\n' + map_display + line + '\n'
+        else:
+            map_display = map_display + line + '\n'
+    return map_display
 
 while True:
+    clear()
     if themap[current_room]['Room Visited'] == 'No':
         themap[current_room]['Room Visited'] = 'Yes'
         room_count += 1
@@ -268,7 +295,10 @@ while True:
     exitlist = []
     for i in range(0, (len(themap[current_room]['exits']))):
         exitname = themap[current_room]['exits'][i]
-        exitlist.append(themap[current_room]['exits'][i])
+        try:
+            exitlist.append(themap[exitname]['name'])
+        except:
+            continue
         try:
             exitroomname = exitroomname + " | " + themap[exitname]['name'] + ' ' + (GREEN + str(exitname) + TERMCOLOR if themap[exitname]['Room Visited'] == 'No' else BLUE + str(exitname) + TERMCOLOR)
         except:
@@ -277,19 +307,29 @@ while True:
     print('Availabe exits' + exitroomname + " | ")
     #Get input where to go
     user_input = input('Input ').title()
+    if user_input == 'Look Map':
+        text = display_map()
+        continue
     old_room = themap[current_room]['name']
     #Find what (x,y) the user input is in
     for i in range(0, len(list(themap))):
-        #if themap[list(themap)[i]]['name'] == None:
-        #        continue
-        if themap[current_room]['name'] not in exitlist:
-            continue
-        elif user_input in themap[list(themap)[i]]['name']:
-            current_room = list(themap)[i]
+        if user_input in themap[list(themap)[i]]['name']:
+            if themap[list(themap)[i]]['name'] == user_input:
+                if themap[list(themap)[i]]['name'] in exitlist:
+                    current_room = list(themap)[i]
+                    break
+                else:
+                    break
+            else:
+                continue
         else:
             continue
     #current_room = themap[currentRoomxy]['name']
+    
     if themap[current_room]['name'] not in exitlist:
-        text = 'You cant go there'
+        text = 'You cant go there - You are in ' + themap[current_room]['name'] + ' ' + str(current_room)
     else:
-        text = 'you are in ' + themap[current_room]['name'] + ' ' + str(current_room)
+        text = 'You are in ' + themap[current_room]['name'] + ' ' + str(current_room)
+
+    
+    #print(listyeah)
