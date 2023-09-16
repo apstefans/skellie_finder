@@ -202,11 +202,11 @@ def generate_xy():
     while i < len(themap.keys()):
         # North
         north = list(list(themap.keys())[i])
-        north[1] = north[1] + 1
+        north[1] = north[1] - 1
         northlist.append(tuple(north))
         # South
         south =  list(list(themap.keys())[i])
-        south[1] = south[1] - 1
+        south[1] = south[1] + 1
         southlist.append(tuple(south))
         # East
         east =  list(list(themap.keys())[i])
@@ -219,7 +219,7 @@ def generate_xy():
         i += 1
 
     for keys in themap.keys():
-        themap[keys]['exits'] = northlist[0], southlist[0], westlist[0], eastlist[0]
+        themap[keys]['exits'] = northlist[0], southlist[0], eastlist[0], westlist[0]
         northlist.pop(0)
         southlist.pop(0)
         eastlist.pop(0)
@@ -292,6 +292,7 @@ while True:
     #Find available exits
     exitroomname = ""
     exitlist = []
+    print(themap[current_room]['exits'])
     for i in range(0, (len(themap[current_room]['exits']))):
         exitname = themap[current_room]['exits'][i]
         try:
@@ -321,4 +322,3 @@ while True:
         text = 'You cant go there'
     else:
         text = themap[current_room]['Desc']
-
